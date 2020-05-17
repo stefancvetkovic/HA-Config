@@ -1,0 +1,28 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+mqtt:
+  broker: core-mosquitto
+  username: mqttAdmin
+  password: mqttAdmin
+
+switch: !include switches.yaml
+frontend:
+  themes: !include_dir_merge_named themes
+# http:
+#   base_url: apt21hassio.duckdns.org
+#   ssl_certificate: /ssl/fullchain.pem
+#   ssl_key: /ssl/privkey.pem
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+
+# Text to speech
+tts:
+  - platform: google_translate
+    base_url: http://192.168.1.51:8123
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
